@@ -29,6 +29,14 @@
             <version>6.0.6</version>
         </dependency>
 
+        <dependency>
+            <groupId>flexmonster</groupId>
+            <artifactId>com.sample</artifactId>
+            <version>1.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/flexmonster-compressor.jar</systemPath>
+        </dependency>
+
     </dependencies>
 
     <build>
