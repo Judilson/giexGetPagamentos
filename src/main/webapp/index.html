@@ -9,7 +9,7 @@
             <div id="pivotContainer" style="padding-bottom: 30px;"></div>
 
             <!-- 2. Include flexmonster.js file -->
-            <script src="https://cdn.flexmonster.com/2.4/flexmonster.js"></script>
+            <script type="text/javascript" src="https://cdn.flexmonster.com/2.4/flexmonster.js"></script>
 
             <!-- 3. Create an instance of the component using new Flexmonster() -->
             <script type="text/javascript">
@@ -41,7 +41,11 @@
                             grid: {
                                 type: "classic"
                             }
-                        }
+                        },
+                        formats: [
+                            {name: ""/* for all measures*/, decimalSeparator: ",", thousandsSeparator: ".", currencySymbol: "", decimalPlaces: 0},
+                            {name: "currency"/* for measures with format='currency'*/, nullValue: "blank", decimalSeparator: ",", thousandsSeparator: ".", currencySymbol: "R$ ", decimalPlaces: 2}
+                        ]
                     },
                     licenseKey: "Z7K3-XBIG6S-3F2I10-6D171P",
                     beforetoolbarcreated: customizeToolbar
@@ -53,8 +57,13 @@
                     toolbar.getTabs = function () {
                         // delete the first tab
                         delete tabs[0];
+                        delete tabs[1];
+                        delete tabs[2];
+                        delete tabs[4];
+                        delete tabs[7];
+                        delete tabs[11];
                         return tabs;
-                    }
+                    };
                 }
 
             </script>
