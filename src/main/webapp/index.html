@@ -1,10 +1,64 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
     <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Welcome to Flexmonster Pivot Table and Charts Component</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <div class="container">
+            <!-- 1. Create a DIV container to insert the component -->
+            <div id="pivotContainer" style="padding-bottom: 30px;"></div>
+
+            <!-- 2. Include flexmonster.js file -->
+            <script src="https://cdn.flexmonster.com/2.4/flexmonster.js"></script>
+
+            <!-- 3. Create an instance of the component using new Flexmonster() -->
+            <script type="text/javascript">
+
+                var pivot = new Flexmonster({
+                    container: "pivotContainer",
+                    componentFolder: "https://cdn.flexmonster.com/2.4/",
+                    toolbar: true,
+                    report: {
+                        dataSource: {
+                            dataSourceType: "ocsv",
+                            filename: "http://localhost:8080/giexGetPagamentos-1.0-SNAPSHOT/GetPagamentos"
+                        },
+                        slice: {
+                            rows: [
+                                {uniqueName: "CRED_ID_CREDOR"},
+                                {uniqueName: "PAPG_DT_PAGAMENTO.Year"},
+                                {uniqueName: "PAPG_DT_PAGAMENTO.Month"},
+                                {uniqueName: "PAPG_DT_PAGAMENTO.Day"}
+                            ],
+                            measures: [
+                                {uniqueName: "HONORARIO", aggregation: "sum", format: "currency"},
+                                {uniqueName: "DESPESAS", aggregation: "sum", format: "currency"},
+                                {uniqueName: "CUSTAS", aggregation: "sum", format: "currency"},
+                                {uniqueName: "PAPG_VL_PAGO_TOTAL", aggregation: "sum", format: "currency"}
+                            ]
+                        },
+                        options: {
+                            grid: {
+                                type: "classic"
+                            }
+                        }
+                    },
+                    licenseKey: "Z7K3-XBIG6S-3F2I10-6D171P",
+                    beforetoolbarcreated: customizeToolbar
+                });
+
+                function customizeToolbar(toolbar) {
+                    // get all tabs
+                    var tabs = toolbar.getTabs();
+                    toolbar.getTabs = function () {
+                        // delete the first tab
+                        delete tabs[0];
+                        return tabs;
+                    }
+                }
+
+            </script>
+            <br/>
+        </div>
     </body>
 </html>

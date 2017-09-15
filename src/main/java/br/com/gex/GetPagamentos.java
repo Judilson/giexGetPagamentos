@@ -30,7 +30,7 @@ public class GetPagamentos extends HttpServlet {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             Connection connection = DriverManager.getConnection("jdbc:mysql://10.10.40.179:3306/giex", "giex", "7xt3Dw87");
-            String query = "SELECT * FROM bi_pagamentos";
+            String query = "SELECT * FROM giex.BI_PAGAMENTOS";
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
 
